@@ -2,7 +2,7 @@ package sturdyc_test
 
 import (
 	"context"
-	"math/rand/v2"
+	"math/rand"
 	"strconv"
 	"sync"
 	"sync/atomic"
@@ -79,7 +79,7 @@ func TestBatchRequestsForMissingKeysGetDeduplicated(t *testing.T) {
 			// We are going to get a few duplicates here too which the cache should be able to handle.
 			ids := make([]string, 0, 5)
 			for k := 0; k < 5; k++ {
-				ids = append(ids, strconv.Itoa(rand.IntN(99)))
+				ids = append(ids, strconv.Itoa(rand.Intn(99)))
 			}
 
 			go func() {

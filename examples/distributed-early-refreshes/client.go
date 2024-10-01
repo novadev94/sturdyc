@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"log"
-	"math/rand/v2"
+	"math/rand"
 	"time"
 
 	"github.com/creativecreature/sturdyc"
@@ -65,7 +65,7 @@ func (c *apiClient) GetShippingOptions(ctx context.Context, containerIndex int, 
 			// Following this log statament, you should see that it gets deleted, and the
 			// next time it's requested it leads to a "outgoing" request which means that
 			// it wasn't found in the distributed key-value store.
-			if rand.IntN(2) == 0 {
+			if rand.Intn(2) == 0 {
 				log.Printf("Excluding ID: %s from the response\n", id)
 				continue
 			}

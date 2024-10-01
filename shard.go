@@ -1,7 +1,7 @@
 package sturdyc
 
 import (
-	"math/rand/v2"
+	"math/rand"
 	"sync"
 	"time"
 )
@@ -163,7 +163,7 @@ func (s *shard[T]) set(key string, value T, isMissingRecord bool) bool {
 		// set a random padding so that the refreshes get spread out evenly over time.
 		var padding time.Duration
 		if s.minRefreshTime != s.maxRefreshTime {
-			padding = time.Duration(rand.Int64N(int64(s.maxRefreshTime - s.minRefreshTime)))
+			padding = time.Duration(rand.Int63n(int64(s.maxRefreshTime - s.minRefreshTime)))
 		}
 		newEntry.refreshAt = now.Add(s.minRefreshTime + padding)
 		newEntry.numOfRefreshRetries = 0

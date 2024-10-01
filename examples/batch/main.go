@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"log"
-	"math/rand/v2"
+	"math/rand"
 	"strconv"
 	"strings"
 	"time"
@@ -78,11 +78,11 @@ func main() {
 	// the batch itself isn't part of the key.
 	for i := 1; i <= 100; i++ {
 		// Get N ids from the original batch.
-		recordsToFetch := rand.IntN(10) + 1
+		recordsToFetch := rand.Intn(10) + 1
 		batch := make([]string, recordsToFetch)
 		copy(batch, ids[:recordsToFetch])
 		// Add a random ID between 1 and 100 to the batch.
-		batch = append(batch, strconv.Itoa(rand.IntN(1000)+10))
+		batch = append(batch, strconv.Itoa(rand.Intn(1000)+10))
 		values, _ := api.GetBatch(context.Background(), batch)
 		log.Println(values)
 	}

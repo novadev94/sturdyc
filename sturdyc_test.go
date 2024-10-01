@@ -3,7 +3,7 @@ package sturdyc_test
 import (
 	"context"
 	"fmt"
-	"math/rand/v2"
+	"math/rand"
 	"sort"
 	"strings"
 	"sync"
@@ -17,7 +17,7 @@ var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 func randKey(n int) string {
 	b := make([]rune, n)
 	for i := range b {
-		b[i] = letters[rand.IntN(len(letters))]
+		b[i] = letters[rand.Intn(len(letters))]
 	}
 	return string(b)
 }
